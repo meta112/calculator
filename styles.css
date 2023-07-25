@@ -7,7 +7,7 @@
 body{
     padding: 0;
     margin: 0;
-    background-color: red;
+    background-image: linear-gradient(to right, purple, rgb(0, 68, 255))
 }
 
 .calculator-grid{
@@ -16,7 +16,7 @@ body{
     align-content: center;
     min-height: 100vh;
     grid-template-columns: repeat(5, 100px);
-    grid-template-rows: minmax(120, auto) repeat(5, 100px);
+    grid-template-rows: repeat(2,minmax(120, auto))  repeat(5, 100px);
 }
 
 .calculator-grid > button{
@@ -38,15 +38,21 @@ body{
 
 .answer{
     grid-column: 1 / -1;
-    background-color: gold;
+    background-color: green;
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
     word-wrap: break-word;
     word-break: break-all;
-    text-align: right;
-    align-items: flex-end;
+    padding: 10px;
+    align-items: end;
     justify-content: space-around;
 
+}
+
+.historydiv {
+    grid-column: 1 / -1;
+    background-color: green;
+    padding: 0px 10px 10px;
 }
 
 .prev-op{
@@ -54,4 +60,32 @@ body{
 }
 .cur-op{
     font-size: 2.5rem;
+}
+.fa-clock-rotate-left{
+    color: rgba(0,0,0,0.6);
+}
+.fa-clock-rotate-left:hover{
+    color: rgba(0,0,0,0.9);
+}
+
+.past-calcs-modal {
+    border-top-style: hidden;
+    border-width: 2px;
+    border-color: rgba(0,0,0,0.3);
+    word-wrap: break-word;
+    word-break: break-all;
+    padding: 5px;
+    align-items: end;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+}
+.history-calculation {
+    font-size: 1rem;
+}
+.history-answer {
+    font-size: 1.5rem;
+}
+.history-answer:hover {
+    cursor:pointer;
 }

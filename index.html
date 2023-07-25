@@ -4,8 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calculator</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
         <link rel="stylesheet" href="styles.css">
         <script src="script.js" defer></script>
+
+        <script src="https://kit.fontawesome.com/56a3213f0e.js" crossorigin="anonymous"></script>
+
+        
     </head>
     <body>
         <!--/*+-=!^ac del e pi log ln sin cos tan . sqrt sq-->
@@ -13,6 +24,10 @@
             <div class="answer">
                 <div data-prev-operand class="prev-op"></div>
                 <div data-cur-operand class="cur-op"></div>
+                
+            </div>
+            <div class="historydiv">
+                <i data-history class="fa-solid fa-clock-rotate-left fa-xl" data-bs-toggle="modal" data-bs-target="#history-modal"></i>
             </div>
             <button data-ac class="btn-2">AC</button>
             <button data-del>del</button>
@@ -38,6 +53,40 @@
             <button data-num>.</button>
             <button data-equals class="btn-2">=</button>
 
+        </div>
+
+        <div id="history-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Previous Calculations</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    
+                        <div class="past-calcs-modal">
+                            <div data-history-calculation class="history-calculation"></div>
+                            <div data-history-answer class="history-answer" data-bs-dismiss="modal"></div>
+                        </div>
+                        <div class="past-calcs-modal">
+                            <div data-history-calculation class="history-calculation"></div>
+                            <div data-history-answer class="history-answer" data-bs-dismiss="modal"></div>
+                        </div>
+                        <div class="past-calcs-modal">
+                            <div data-history-calculation class="history-calculation"></div>
+                            <div data-history-answer class="history-answer" data-bs-dismiss="modal"></div>
+                        </div>
+                        <div class="past-calcs-modal">
+                            <div data-history-calculation class="history-calculation"></div>
+                            <div data-history-answer class="history-answer" data-bs-dismiss="modal"></div>
+                        </div>
+                        <div class="past-calcs-modal">
+                            <div data-history-calculation class="history-calculation"></div>
+                            <div data-history-answer class="history-answer" data-bs-dismiss="modal"></div>
+                        </div>
+                    
+                    
+                </div>
+            </div>
         </div>
 
     </body>
