@@ -4,6 +4,7 @@ class Calculator{
         this.currentOperandTextElement = currentOperandTextElement;
         this.pastCalculations = pastCalculations;
         this.pastAnswers = pastAnswers;
+        this.numberCalculationsRecorded = 0;
         this.clear();
         this.justPressedEquals = false;
     }
@@ -95,6 +96,21 @@ class Calculator{
                 break;
             default:
                 return;
+        }
+
+        if (this.numberCalculationsRecorded < 5){
+            pastCalculations[this.numberCalculationsRecorded].innerText = `${this.previousOperand} ${this.operation} ${this.currentOperand} =`
+            pastAnswers[this.numberCalculationsRecorded].innerText = result.toString();
+            pastAnswers[this.numberCalculationsRecorded].parentElement.style.borderTopStyle = 'solid';
+            this.numberCalculationsRecorded++;
+            
+        } else {
+            for (var i = 0; i < 4; i++){
+                pastCalculations[i].innerText = pastCalculations[i+1].innerText;
+                pastAnswers[i].innerText = pastAnswers[i+1].innerText;
+            }
+            pastCalculations[this.numberCalculationsRecorded-1].innerText = `${this.previousOperand} ${this.operation} ${this.currentOperand} =`
+            pastAnswers[this.numberCalculationsRecorded-1].innerText = result.toString();
         }
 
         this.currentOperand = result.toString();
@@ -219,3 +235,54 @@ eButton.addEventListener('click', () => {
     eButton.blur();
 })
 
+document.addEventListener('keydown', (e) => {
+    if (Number.isInteger(parseInt(e.key)) || e.key == '.') {
+        calculator.appendNumber(e.key);
+        calculator.updateDisplay();
+    }
+    if (['+', '^', '/', '*'].includes(e.key)){
+        calculator.chooseOperation(e.key);
+        calculator.updateDisplay();
+    }
+
+    if (e.key == 'm'){
+        calculator.chooseOperation('mod');
+        calculator.updateDisplay();
+    }
+
+    if (e.key == '-'){
+        calculator.chooseOperation('-');
+        calculator.updateDisplay();
+    }
+
+    if (e.key == '=' || e.key == 'Enter'){
+        calculator.compute();
+        calculator.updateDisplay();
+        calculator.justPressedEquals = true;
+    }
+
+    if (e.key == "Backspace"){
+        calculator.delete();
+        calculator.updateDisplay();
+    }
+
+    if (e.key == 'p'){
+        calculator.specialNumber('pi');
+        calculator.updateDisplay();
+    }
+
+    if (e.key == 'e'){
+        calculator.specialNumber('e');
+        calculator.updateDisplay();
+    }
+
+})
+
+pastAnswers.forEach(x => {
+    x.addEventListener('click', () => {
+        calculator.clear();
+        calculator.appendNumber(x.innerHTML);
+        calculator.justPressedEquals = false;
+        calculator.updateDisplay();
+    })
+})
